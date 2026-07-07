@@ -1,0 +1,196 @@
+{
+  "name": "Sentinel Flow - Document Orchestration Engine",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sentinel_flow/document",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook_ingest",
+      "name": "Webhook - Document Ingest",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-940, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://extractor:8000/analyze",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{$json.body.document_text || $json.document_text || JSON.stringify($json)}}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "ai_extract",
+      "name": "AI Extract + Classify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-700, 0]
+    },
+    {
+  "parameters": {
+    "jsCode": "// Pass through the full AI response unchanged\n// The Python /analyze endpoint already returns perfect structure\nreturn [{ json: $json }];"
+  },
+  "id": "normalize",
+  "name": "Pass Through Original Response",
+  "type": "n8n-nodes-base.code",
+  "typeVersion": 2,
+  "position": [-460, 0]
+},
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.risk_level}}",
+                    "rightValue": "high",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "High Risk"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.recommended_route}}",
+                    "rightValue": "crm_update",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CRM Update"
+            }
+          ]
+        },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "route_switch",
+      "name": "Route by Risk / Recommendation",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [-220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $credentials resendApi.key }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  \"from\": \"Sentinel Flow <onboarding@resend.dev>\",\n  \"to\": [\"developer.coral@proton.me\"],\n  \"subject\": \"High-risk document requires review: \" + ($json.document_type || \"business document\"),\n  \"text\": \"Risk: \" + ($json.risk_level || \"\") + \"\\nCustomer: \" + ($json.customer_name || \"\") + \"\\nAmount: \" + ($json.amount || \"\") + \"\\nDue date: \" + ($json.due_date || \"\") + \"\\n\\nSummary:\\n\" + ($json.summary || \"\") + \"\\n\\nFlags: \" + JSON.stringify($json.flags || [])\n} }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "email_high_risk",
+      "name": "Send Review Email via Resend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [60, -160],
+      "credentials": {
+        "resendApi": {
+          "id": "{{ $env.RESEND_API_KEY }}", 
+          "name": "Resend API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "hubspotAppToken",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"email\": $json.contact_email || 'unknown@example.com',\n    \"firstname\": $json.customer_name || 'Unknown',\n    \"sentinel_last_document_type\": $json.document_type || '',\n    \"sentinel_risk_level\": $json.risk_level || '',\n    \"sentinel_summary\": $json.summary || ''\n  }\n}",
+        "options": {}
+      },
+      "id": "hubspot_contact",
+      "name": "Create/Update CRM Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [60, 40],
+      "credentials": {
+        "hubSpotApi": {
+          "id": "{{ $env.HUBSPOT_API_KEY }}",
+          "name": "HubSpot Private App"
+        }
+      },
+      "disabled": true
+    },
+    {
+  "parameters": {
+    "jsCode": "// Return the AI response as-is to the frontend\n// Don't wrap or modify it - the frontend expects the exact AnalyzeResponse shape\nreturn $input.all();"
+  },
+  "id": "respond",
+  "name": "Return Original Response",
+  "type": "n8n-nodes-base.code",
+  "typeVersion": 2,
+  "position": [360, 0]
+}
+  ],
+  "connections": {
+    "Webhook - Document Ingest": {
+      "main": [[{ "node": "AI Extract + Classify", "type": "main", "index": 0 }]]
+    },
+    "AI Extract + Classify": {
+      "main": [[{ "node": "Normalize Structured Payload", "type": "main", "index": 0 }]]
+    },
+    "Normalize Structured Payload": {
+      "main": [[{ "node": "Route by Risk / Recommendation", "type": "main", "index": 0 }]]
+    },
+    "Route by Risk / Recommendation": {
+      "main": [
+        [{ "node": "Send Review Email via Resend", "type": "main", "index": 0 }],
+        [{ "node": "Create/Update CRM Contact", "type": "main", "index": 0 }],
+        [{ "node": "Return Demo Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Create/Update CRM Contact": {
+      "main": [[{ "node": "Return Demo Response", "type": "main", "index": 0 }]]
+    },
+    "Send Review Email via Resend": {
+      "main": [[{ "node": "Return Demo Response", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {}
+}
