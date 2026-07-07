@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sentinel Flow | Document Orchestration Engine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Enterprise-ready PoC</p>
+      <h1>Sentinel Flow</h1>
+      <p class="subtitle">Intelligent Document Orchestration Engine using n8n, Claude-compatible AI extraction, routing logic, CRM/email actions, and audit-ready execution logs.</p>
+    </section>
+
+    <section class="card">
+      <h2>Upload or paste a document</h2>
+      <p class="muted">This portal posts to the n8n webhook. n8n calls the Python extraction service, routes by risk, and then triggers email/CRM actions.</p>
+
+      <label class="label" for="webhookUrl">n8n webhook URL</label>
+      <input id="webhookUrl" value="http://localhost:5678/webhook/sentinel_flow/document" />
+
+      <label class="label" for="documentText">Document text</label>
+      <textarea id="documentText" rows="10" placeholder="Loading sample document..."></textarea>
+
+      <div class="actions">
+        <button id="submitBtn">Run Sentinel Flow</button>
+        <button id="diagramBtn" class="secondary">Architecture View</button>
+      </div>
+      <div id="status" class="status idle">Idle</div>
+    </section>
+
+    <!-- NEW IMPROVED RESULT SECTION -->
+    <section class="card">
+      <h2>Result</h2>
+      
+      <!-- Dashboard Layout Container -->
+      <div id="dashboardOutput" style="display:none;">
+        <div class="analysis-header">
+          <div class="header-left">
+            <h2 id="dashTitle">Document Analysis</h2>
+            <p id="dashTypeBadge" class="badge">Type: -</p>
+          </div>
+          <div class="header-right">
+             <div class="risk-indicator high-risk" id="dashRiskIndicator">
+               <span class="risk-dot"></span> HIGH RISK
+             </div>
+          </div>
+        </div>
+
+        <hr class="divider"/>
+
+        <div class="grid-layout">
+          <div class="col-main">
+            <div class="info-card">
+              <h3>Executive Summary</h3>
+              <p id="dashSummary">-</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Key Findings</h3>
+              <ul id="dashFindingsList"></ul>
+            </div>
+
+            <div class="info-card">
+              <h3>Detected Risks</h3>
+              <ul id="dashRisksList"></ul>
+            </div>
+            
+            <div class="info-card">
+              <h3>Recommended Actions</h3>
+              <ol id="dashActionsList"></ol>
+            </div>
+          </div>
+
+          <div class="col-sidebar">
+            <div class="metric-panel">
+              <h3>Workflow Details</h3>
+              <dl>
+                <dt>Route</dt><dd id="dashRoute">-</dd>
+                <dt>Confidence</dt><dd id="dashConfidence">-</dd>
+                <dt>Risk Level</dt><dd id="dashRiskLevel">-</dd>
+              </dl>
+            </div>
+
+            <div class="metric-panel">
+              <h3>Metrics</h3>
+              <dl>
+                <dt>Findings</dt><dd id="dashMetricFindings">-</dd>
+                <dt>Risks</dt><dd id="dashMetricRisks">-</dd>
+                <dt>Missing Fields</dt><dd id="dashMetricPlaceholders">-</dd>
+                <dt>Amounts Found</dt><dd id="dashMetricAmounts">-</dd>
+              </dl>
+            </div>
+            
+            <div class="note-box">
+              <small>Note: This view renders the structured analysis payload. Raw JSON is available in browser console (F12).</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fallback for unexpected formats -->
+      <pre id="output">No execution yet.</pre>
+    </section>
+  </main>
+
+  <dialog id="architectureModal">
+    <button class="close" id="closeModal">×</button>
+    <h2>Production Architecture</h2>
+    <pre class="diagram">Client Portal → n8n Webhook → Python Extractor → Claude/OpenRouter
+                  ↓                ↓
+             Audit Logs        Risk Routing
+                  ↓                ↓
+          Postgres / CloudWatch   CRM + Email + Task Actions</pre>
+    <p>Local PoC uses Docker Compose. Production blueprint uses AWS ECS, RDS Postgres, Secrets Manager, CloudWatch, SQS/Redis queueing, and GitHub Actions CI/CD.</p>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

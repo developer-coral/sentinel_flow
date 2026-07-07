@@ -1,0 +1,312 @@
+CONTRACT RENEWAL AGREEMENT
+
+This Contract Renewal Agreement (“Agreement”) is entered into on January 2, 2027 (“Effective Date”) by and between:
+
+ACME Services Group Ltd., a fictional corporation organized under the laws of the fictional jurisdiction of Westland, having its registered office at 100 Innovation Avenue, Enterprise District, Westhaven, Westland (“Service Provider”),
+
+and
+
+BluePeak Solutions Corporation, a fictional corporation organized under the laws of the fictional jurisdiction of Eastland, having its principal place of business at 250 Horizon Boulevard, Suite 800, Rivergate, Eastland (“Client”).
+
+The Service Provider and the Client are collectively referred to as the “Parties” and individually as a “Party.”
+
+⸻
+
+1. Purpose of Renewal
+
+The purpose of this Agreement is to renew the existing commercial relationship between the Parties for the continued provision of services previously supplied by the Service Provider.
+
+The Parties acknowledge that ACME Services Group Ltd. has submitted a renewal proposal with a total contract value of USD 18,500, and the Client agrees to renew the services subject to the terms and conditions contained in this Agreement.
+
+⸻
+
+2. Renewal Term
+
+The renewed contract term shall commence on January 15, 2027, and continue through January 14, 2028, unless terminated earlier in accordance with this Agreement.
+
+Any extension beyond the renewal term shall require a written agreement signed by both Parties.
+
+No automatic renewal shall apply unless expressly agreed in writing.
+
+⸻
+
+3. Contract Value and Payment Terms
+
+The total contract value for this renewal is USD 18,500.
+
+Payments shall be made according to the following schedule:
+
+Payment	Amount	Due Date
+Initial Payment	USD 7,500	January 15, 2027
+Second Payment	USD 6,000	May 15, 2027
+Final Payment	USD 5,000	September 15, 2027
+
+Payments shall be made by electronic bank transfer using the following fictional banking information:
+
+Beneficiary: ACME Services Group Ltd.
+
+Bank: Fictional Commerce Bank
+
+Bank Code: FCB-001
+
+Account Number: 1000000000012345
+
+Reference: CRA-2027-0185
+
+Unless otherwise agreed:
+
+* The Client is responsible for applicable taxes.
+* Each Party shall bear its own banking charges.
+* All invoices shall be payable within fifteen (15) calendar days of issuance.
+
+⸻
+
+4. Late Payment
+
+If any payment is overdue, the Service Provider may charge interest at 1.5% per month on the outstanding balance until payment is received.
+
+Before applying any late payment charges, the Service Provider shall provide written notice to the Client.
+
+If payment remains outstanding for more than 30 calendar days following such notice, the Service Provider may suspend services until all outstanding invoices and accrued interest have been paid.
+
+Suspension shall not waive the Client’s payment obligations.
+
+⸻
+
+5. Scope of Services
+
+The Service Provider shall continue providing:
+
+* Managed cloud infrastructure support
+* Application monitoring and maintenance
+* Security patch management
+* Twenty-four-hour production monitoring
+* Monthly system performance reporting
+* Email and telephone technical support
+* Incident response for critical service interruptions
+* Quarterly architecture review meetings
+* Disaster recovery testing
+* Software deployment assistance
+
+Services outside this scope require a written change request approved by both Parties.
+
+⸻
+
+6. Data Security
+
+The Service Provider shall implement commercially reasonable administrative, technical, and organizational safeguards to protect Client information.
+
+At a minimum, the Service Provider shall:
+
+1. Restrict access to authorized personnel.
+2. Require multi-factor authentication for administrative accounts.
+3. Encrypt sensitive information during transmission.
+4. Encrypt production backups.
+5. Notify the Client within forty-eight (48) hours of becoming aware of any confirmed or suspected security incident.
+6. Cooperate during any investigation.
+7. Securely return or destroy Client information within thirty (30) days following termination unless retention is legally required.
+
+⸻
+
+7. Confidentiality
+
+Each Party agrees to protect all confidential business, financial, technical, operational, and customer information received from the other Party.
+
+Confidential Information may only be disclosed:
+
+* with prior written consent;
+* where required by applicable law; or
+* to employees or contractors who require access and are subject to confidentiality obligations.
+
+These obligations survive for three (3) years following termination.
+
+⸻
+
+8. Intellectual Property
+
+Each Party retains ownership of all intellectual property owned before the Effective Date.
+
+The Service Provider retains ownership of all proprietary software, documentation, templates, automation scripts, methodologies, tools, and technical processes developed independently of this Agreement.
+
+The Client receives a non-exclusive, non-transferable license to use delivered materials solely for its internal business operations.
+
+⸻
+
+9. Service Levels
+
+The Service Provider shall use commercially reasonable efforts to achieve:
+
+* 99.9% monthly service availability.
+* Four-hour response time for critical incidents.
+* Eight-business-hour response time for high-priority incidents.
+* One-business-day response time for standard support requests.
+
+Scheduled maintenance shall normally occur outside standard business hours with at least seventy-two (72) hours’ advance notice.
+
+⸻
+
+10. Warranties
+
+The Service Provider warrants that:
+
+* services shall be performed with reasonable care and professional skill;
+* qualified personnel shall perform the services;
+* deliverables shall substantially conform to agreed specifications;
+* services shall comply with applicable contractual requirements.
+
+Except as expressly stated herein, no additional warranties are provided.
+
+⸻
+
+11. Limitation of Liability
+
+Except for fraud, willful misconduct, breach of confidentiality, or obligations that cannot legally be limited:
+
+* neither Party shall be liable for indirect, incidental, special, or consequential damages; and
+* each Party’s aggregate liability shall not exceed the total fees paid under this Agreement.
+
+⸻
+
+12. Indemnification
+
+Each Party agrees to indemnify and hold harmless the other Party from third-party claims arising from:
+
+* negligence;
+* willful misconduct;
+* breach of this Agreement;
+* infringement of intellectual property rights; or
+* violation of applicable law.
+
+The indemnified Party shall promptly notify the indemnifying Party of any claim.
+
+⸻
+
+13. Termination
+
+Either Party may terminate this Agreement:
+
+* upon thirty (30) days’ written notice if a material breach remains uncured;
+* immediately if the other Party becomes insolvent or ceases operations; or
+* by mutual written agreement.
+
+Upon termination:
+
+* all unpaid invoices become immediately due;
+* confidential information shall be returned or securely destroyed; and
+* surviving obligations remain effective.
+
+⸻
+
+14. Force Majeure
+
+Neither Party shall be liable for delays caused by events beyond its reasonable control, including natural disasters, government actions, labor disruptions, cyber incidents affecting public infrastructure, or widespread communication outages.
+
+The affected Party shall notify the other Party within five (5) business days after becoming aware of the event.
+
+⸻
+
+15. Governing Law
+
+This Agreement shall be governed by the laws of the fictional jurisdiction of Westland.
+
+The Parties shall first attempt to resolve disputes through good-faith negotiations.
+
+If no resolution is reached within thirty (30) calendar days, disputes shall be submitted exclusively to the Commercial Court of Westhaven, Westland.
+
+⸻
+
+16. Notices
+
+All notices shall be delivered in writing to the following fictional contact information.
+
+Service Provider
+
+ACME Services Group Ltd.
+
+100 Innovation Avenue
+
+Enterprise District
+
+Westhaven, Westland
+
+Email: legal@acmeservices.example
+
+Website: https://acmeservices.example
+
+⸻
+
+Client
+
+BluePeak Solutions Corporation
+
+250 Horizon Boulevard
+
+Suite 800
+
+Rivergate, Eastland
+
+Email: contracts@bluepeak.example
+
+Website: https://bluepeak.example
+
+Notices shall be deemed received:
+
+* immediately upon confirmed electronic delivery;
+* one (1) business day after courier delivery; or
+* three (3) business days after registered mail dispatch.
+
+⸻
+
+17. Entire Agreement
+
+This Agreement constitutes the complete agreement between the Parties regarding the renewal of services and supersedes all prior negotiations, proposals, and communications.
+
+Any amendment must be in writing and signed by authorized representatives of both Parties.
+
+⸻
+
+18. Severability
+
+If any provision of this Agreement is found unenforceable, the remaining provisions shall remain valid and enforceable.
+
+⸻
+
+19. Counterparts
+
+This Agreement may be executed in one or more counterparts, including electronically signed copies, each of which shall be deemed an original.
+
+⸻
+
+20. Signatures
+
+SERVICE PROVIDER
+
+Company: ACME Services Group Ltd.
+
+Authorized Representative: Rowan Hale (fictional)
+
+Title: Director of Client Success
+
+Email: rowan.hale@acmeservices.example
+
+Date: January 2, 2027
+
+⸻
+
+CLIENT
+
+Company: BluePeak Solutions Corporation
+
+Authorized Representative: Avery Quinn (fictional)
+
+Title: Chief Operations Officer
+
+Email: avery.quinn@bluepeak.example
+
+Date: January 2, 2027
+
+⸻
+
+Demonstration Data Notice
+
+All organizations, jurisdictions, addresses, names, email addresses, websites, banking information, and contact details contained in this Agreement are entirely fictional and created solely for demonstration, testing, OCR, NLP, document analysis, and software development purposes. Any resemblance to actual persons, organizations, locations, or entities is purely coincidental.
